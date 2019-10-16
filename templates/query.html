@@ -1,0 +1,51 @@
+{% extends 'base_gene_finder.html' %}
+
+{% block body %} 
+<div class="column is-4 is-offset-4">
+        <div class="box">
+            <form method="POST" action="">
+                <div class="field">
+                    <div class="control">
+                        <input class="input is-large" type="text" name="dna" id="dna" placeholder="Gene" autofocus="">
+                    </div>
+                </div>
+                <button class="button is-block is-info is-large is-fullwidth">Submit Query</button>
+
+            </form>
+        </div>
+</div>
+
+<div class="content">
+    <div class="box">
+
+        {% if rows|length < 1 %}
+            <h3 style="text-align: center ;">You don't have any past query record.</h3>
+            {% else %}
+            <h3 style="text-align: center ;">Your past queries</h3>
+
+            <table class ="table" align="center">
+                <tr>
+                    <th>Date</th>
+                    <th> <abbr title="Position">Task</abbr></th>
+                    <th>Protein</th>
+                    <th>Actions</th>
+                </tr>
+                {% for row in rows %}
+                <tr>
+                    <td>{{ row.date_created.date() }}</td>
+                    <td>{{ row.dna }}</td>
+                    <td>{{ row.protein }}</td>
+                    <td>
+                        <a href="/delete/{{row.id}}">Delete</a>
+                        <!-- <br/>
+                        <a href="/update/{{row.id}}">Update</a> -->
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
+        {% endif %}
+    </div>
+
+    
+</div>
+{% endblock %}

@@ -1,0 +1,13 @@
+body{
+    margin: 0;
+    font-family: 'sans-serif';
+}
+
+table, th, td {
+    border: 1px solid black;
+  }
+
+form { 
+    margin: 0 auto; 
+    width:250px;
+}

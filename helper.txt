@@ -1,0 +1,12 @@
+from project import db, create_app
+db.create_all(app=create_app())
+exit()
+
+
+celery -A app.celery worker --pool=solo -l info
+https://github.com/celery/celery/issues/4178
+
+
+Celery doc
+https://flask.palletsprojects.com/en/1.0.x/patterns/celery/
+
