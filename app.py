@@ -49,7 +49,7 @@ class Queries(UserMixin, db.Model):
 
 #celery for asyn calls
 app.config.update(
-    CELERY_BROKER_URL='amqp://localhost//',
+    CELERY_BROKER_URL='redis://localhost:6379',
     CELERY_RESULT_BACKEND='redis://localhost//'
 )
 celery = make_celery(app)
@@ -156,4 +156,4 @@ def logout():
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=True, host='0.0.0.0', port=5000)
