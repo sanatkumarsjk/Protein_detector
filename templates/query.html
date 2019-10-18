@@ -6,7 +6,7 @@
             <form method="POST" action="">
                 <div class="field">
                     <div class="control">
-                        <input class="input is-large" type="text" name="dna" id="dna" placeholder="Gene" autofocus="">
+                        <input class="input is-large" type="text" onkeyup="this.value = this.value.toUpperCase()" name="dna" id="dna" placeholder="Gene" autofocus="">
                     </div>
                 </div>
                 <button class="button is-block is-info is-large is-fullwidth">Submit Query</button>
@@ -26,15 +26,19 @@
             <table class ="table" align="center">
                 <tr>
                     <th>Date</th>
-                    <th> <abbr title="Position">Task</abbr></th>
-                    <th>Protein</th>
+                    <th> <abbr title="Position">DNA</abbr></th>
+                    <th>Genome</th>
+                    <th>Start</th>
+                    <th>End</th>
                     <th>Actions</th>
                 </tr>
                 {% for row in rows %}
                 <tr>
                     <td>{{ row.date_created.date() }}</td>
                     <td>{{ row.dna }}</td>
-                    <td>{{ row.protein }}</td>
+                    <td>{{ row.genome }}</td>
+                    <td>{{ row.start }}</td>
+                    <td>{{ row.end }}</td>
                     <td>
                         <a href="/delete/{{row.id}}">Delete</a>
                         <!-- <br/>
