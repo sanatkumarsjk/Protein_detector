@@ -4,6 +4,8 @@ from Bio.Seq import Seq
 from Bio.Alphabet import IUPAC
 
 def check_protein(dna):
+    if len(dna) <1:
+        return False
     files = set(['NC_000852', 'NC_007346', 'NC_008724', 'NC_009899', 'NC_014637', 'NC_020104', 'NC_023423', 'NC_023640', 'NC_023719', 'NC_027867'])
     
     coding_dna = Seq(dna, IUPAC.unambiguous_dna)

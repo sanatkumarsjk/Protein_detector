@@ -61,17 +61,14 @@ def check_seq(new_dna, user_email):
     protein = check_protein(new_dna)
     # print(protein,"---------------------------------------------------------------------------------------------")
     if protein:
-        new_sequence = Queries(dna=new_dna, start=protein[0][0], end=protein[0][1], genome=protein[1], email=user_email, status="DONE")
+        new_query = Queries(dna=new_dna, start=protein[0][0], end=protein[0][1], genome=protein[1], email=user_email, status="DONE")
     else:
-        new_sequence = Queries(dna=new_dna, genome="No match found", email=user_email, status="BAD")
+        new_query = Queries(dna=new_dna, genome="No match found", email=user_email, status="BAD")
     try:
-        db.session.add(new_sequence)
+        db.session.add(new_query)
         db.session.commit()
-        # return redirect('/query')
     except:
         return "task not added "
-    # else:
-    #     return redirect('/query')
 
 
 #app routes
@@ -108,6 +105,10 @@ def delete(id):
         return redirect('/query')
     except:
         return "There was error in deleteing the task"
+
+@app.route('/update', methods=['GET','POST'])
+def update():
+        return redirect(url_for('process_query'))
 
 # Authentication routes
 @app.route('/login')
