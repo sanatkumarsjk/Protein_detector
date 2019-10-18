@@ -42,7 +42,7 @@ class Queries(UserMixin, db.Model):
     completed = db.Column(db.Integer, default=0) 
     date_created = db.Column(db.DateTime, default=datetime.utcnow)
     status = db.Column(db.String(200), nullable=False)
-    
+
     def __repr__(self): 
         return '<Task %r>' % self.id
 
@@ -61,9 +61,9 @@ def check_seq(new_dna, user_email):
     protein = check_protein(new_dna)
     # print(protein,"---------------------------------------------------------------------------------------------")
     if protein:
-        new_sequence = Queries(dna=new_dna, start=protein[0][0], end=protein[0][1], genome=protein[1], email=user_email)
+        new_sequence = Queries(dna=new_dna, start=protein[0][0], end=protein[0][1], genome=protein[1], email=user_email, status="DONE")
     else:
-        new_sequence = Queries(dna=new_dna, genome="No match found", email=user_email)
+        new_sequence = Queries(dna=new_dna, genome="No match found", email=user_email, status="BAD")
     try:
         db.session.add(new_sequence)
         db.session.commit()
